@@ -13,9 +13,6 @@ class Media(Base):
     id = Column(Integer, primary_key=True)
     user_login = Column(String(250), unique = True, nullable=False)
     user_password = Column(String, nullable=False)
-   
-    
-
 
 class User(Base):
     __tablename__ = 'user'
@@ -42,22 +39,21 @@ class Follower(Base):
 class Post(Base):
     __tablename__ = 'post'
     id = Column(Integer, primary_key=True) 
-    caption = Column(String(250), nullable=True) 
-    user_id = Column(Integer, nullable=True) 
-    Likes = Column(Integer, nullable=True)
-    image_size = Column(Integer, nullable=True) 
-    date_created = Column(DateTime, nullable=True) 
-    date_updated = Column(DateTime, nullable=True) 
+    caption = Column(String(250)) 
+    user_id = Column(Integer) 
+    Likes = Column(Integer)
+    date_created = Column(DateTime) 
+    date_updated = Column(DateTime) 
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship('User')
 
 class Comment(Base):    
     __tablename__ = 'Comment'
     id = Column(Integer, primary_key=True)
-    comment_text = Column(String(250), nullable=True)
+    comment_text = Column(String(250), nullable=False)
     post_id = Column(Integer, ForeignKey('post.id'))
     post = relationship('Post')
-
+    date_created = Column(DateTime)
     def to_dict(self):
         return {}
 
