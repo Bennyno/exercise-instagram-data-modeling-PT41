@@ -13,8 +13,7 @@ class Media(Base):
     id = Column(Integer, primary_key=True)
     user_login = Column(String(250), unique = True, nullable=False)
     user_password = Column(String, nullable=False)
-    # user_id = Column(Integer, ForeignKey('user.id'))
-    # user = relationship('User') 
+   
     
 
 
@@ -42,13 +41,13 @@ class Follower(Base):
 
 class Post(Base):
     __tablename__ = 'post'
-    id = Column(Integer, primary_key=True) ## ID of the user who owns this post
-    caption = Column(String(250), nullable=True) ## Photo caption
-    user_id = Column(Integer, nullable=True) #*ID of the user who owns this photo
-    Likes = Column(Integer, nullable=True) ## how many likes the photo has
-    image_size = Column(Integer, nullable=True) ## Image size on server
-    date_created = Column(DateTime, nullable=True) #* When this image was created (cher
-    date_updated = Column(DateTime, nullable=True) ## Last time this image was updated
+    id = Column(Integer, primary_key=True) 
+    caption = Column(String(250), nullable=True) 
+    user_id = Column(Integer, nullable=True) 
+    Likes = Column(Integer, nullable=True)
+    image_size = Column(Integer, nullable=True) 
+    date_created = Column(DateTime, nullable=True) 
+    date_updated = Column(DateTime, nullable=True) 
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship('User')
 
@@ -58,24 +57,6 @@ class Comment(Base):
     comment_text = Column(String(250), nullable=True)
     post_id = Column(Integer, ForeignKey('post.id'))
     post = relationship('Post')
-    
-
-
-
-# class Planets(Base):
-#     __tablename__ = 'planets'
-#     # Here we define columns for the table address.
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String(250))
-#     rotation_period = Column(String(250))
-#     orbital_period = Column(String(250))
-#     diameter = Column(String(250))
-#     climate = Column(String(250))
-#     gravity = Column(String(250))
-#     terrain = Column(String(250))
-#     surface_water = Column(String(250))
-#     population = Column(String(250))
 
     def to_dict(self):
         return {}
