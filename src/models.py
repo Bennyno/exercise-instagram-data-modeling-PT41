@@ -54,6 +54,7 @@ class Comment(Base):
     post_id = Column(Integer, ForeignKey('post.id'))
     post = relationship('Post')
     date_created = Column(DateTime)
+    
     def to_dict(self):
         return {}
 
